@@ -1,0 +1,12 @@
+* {
+  font-family: 'Lobster', cursive;
+  color:darkorange;
+}
+
+p, li, td {
+  font-size: 15px;
+}
+
+body {
+  background-color: teal;
+}
