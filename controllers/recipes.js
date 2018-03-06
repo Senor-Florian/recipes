@@ -24,7 +24,8 @@ recipes.get('/:id', (req, res) => {
 // create
 recipes.post('/', (req, res) => {
   let recipename = req.body.recipename;
-  recipeModel.createRecipe({recipename: recipename});
+  let description = req.body.description;
+  recipeModel.createRecipe({recipename: recipename, description: description});
   res.redirect('/recipes');
 });
 
@@ -40,7 +41,8 @@ recipes.get('/:id/edit', (req, res) => {
 recipes.put('/:id', (req, res) => {
   let id = parseInt(req.params.id);
   let recipename = req.body.recipename;
-  recipeModel.updateRecipe(id, recipename);
+  let description = req.body.description;
+  recipeModel.updateRecipe(id, recipename, description);
   res.redirect('/recipes');
 });
 

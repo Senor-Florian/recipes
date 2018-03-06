@@ -8,7 +8,11 @@
   <tr>
     <td>{{id}}</td>
     <td><a href="/recipes/{{id}}">{{recipename}}</a></td>
-    <td><a href="/recipes/{{id}}/edit">Edit</a></td>
+    <td>
+      <form method="GET" action="/recipes/{{id}}/edit">
+        <input type="submit" value="Edit" />
+      </form>
+    </td>
     <td>
       <form method="POST" action="/recipes/{{id}}?_method=DELETE">
         <input type="submit" value="Delete" />

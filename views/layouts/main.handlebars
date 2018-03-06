@@ -9,16 +9,25 @@
   <title>Recipes</title>
 </head>
 <body>
-  <h1>Recipes</h1>
-  <ul>
-    <li>
-      <a href='/recipes'>List</a>
-    </li>
-    <li>
-      <a href='/recipes/new'>New recipe</a>
-    </li>
-  </ul>
-  {{{body}}}
-  <p>Copyright 2018 Flow Academy &copy;</p>
+  <div class="menu">
+    <div class="title">
+      <h1>Recipes</h1>  
+    </div>
+    <div class="links">
+        <div class="list" ><a href='/recipes'>List</a></div>
+        <div class="new" ><a href='/recipes/new'>New recipe</a></div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="text">
+      <p>Welcome to my website! It has the hottest new recipes that you'll never use. You can upload new recipes,
+         delete or edit existing ones, and that's about it.
+      </p>
+    </div>
+    {{{body}}}
+  </div>
+  <div class="footer">
+    <p>Copyright 2018 Flow Academy &copy;</p>
+  </div>
 </body>
 </html>
