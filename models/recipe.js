@@ -1,3 +1,35 @@
+module.exports = (sequelize, Datatype) => {
+  var recipe = sequelize.define('recipe', {
+    name: {
+      type: Datatype.STRING
+    },
+    description: {
+      type: Datatype.STRING
+    },
+    duration: {
+      type: Datatype.INTEGER
+    },
+    difficulty: {
+      type: Datatype.ENUM,
+      values: ['easy', 'medium', 'hard']
+    },
+    ingredients: {
+      type: Datatype.STRING
+    },
+    origin: {
+      type: Datatype.STRING
+    },
+    gluten_free: {
+      type: Datatype.BOOLEAN
+    },
+    student_id: {
+      type: Datatype.INTEGER
+    }
+  });
+  return recipe;
+};
+
+/*
 var recipeDB = [
   {id: 0, recipename: 'Pizza', description: 'This is a pizza.'},
   {id: 1, recipename: 'Lasagne', description: 'This is a lasagne.'},
@@ -43,3 +75,4 @@ module.exports = {
   updateRecipe: updateRecipe,
   deleteRecipe: deleteRecipe
 };
+*/

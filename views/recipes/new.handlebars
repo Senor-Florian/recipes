@@ -1,8 +1,23 @@
 <h2>New recipe</h2>
 <form method="POST" action="/recipes">
   <p>Name of the recipe:</p>
-  <input type="text" name="recipename" /> <br>
+  <input type="text" name="name"/> <br>
   <p>Description:</p>
-  <textarea name="description"></textarea> <br> <br>
-  <input type="submit" value="Create" />
+  <textarea name="description"></textarea> <br>
+  <p>Preparation time in minutes:</p>
+  <input type="text" name="duration" /> <br>
+  <p>Difficulty:</p>
+  <input type="radio" name="difficulty" value="easy" /> Easy<br>
+  <input type="radio" name="difficulty" value="medium" /> Medium <br>
+  <input type="radio" name="difficulty" value="hard" /> Hard <br>
+  <p>Ingedients:</p>
+  <textarea type="text" name="ingredients"></textarea> <br>
+  <p>Origin:</p>
+  <input type="text" name="origin" /> <br>
+  <p>Gluten free:</p>
+  <input type="radio" name="gluten_free" value="true" /> Yes <br>
+  <input type="radio" name="gluten_free" value="false" /> No <br>
+  <p>ID of uploader:</p>
+  <input type="text" name="student_id"/> <br>
+  <input type="submit" value="Create recipe" />
 </form>

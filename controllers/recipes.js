@@ -1,12 +1,14 @@
 const express = require('express');
-const recipeModel = require('../models/recipe');
+// const recipeModel = require('../models/recipe');
 const recipes = express();
+const models = require('../models');
 
 // index
 recipes.get('/', (req, res) => {
-  let allRecipes = recipeModel.getAllRecipes();
-  res.locals.allRecipes = allRecipes;
-  res.render('recipes/index');
+  models.recipe.findAll().then(recipes => {
+    res.locals.allRecipes = recipes;
+    res.render('recipes/index');
+  });
 });
 
 // new
@@ -16,41 +18,54 @@ recipes.get('/new', (req, res) => {
 
 // show
 recipes.get('/:id', (req, res) => {
-  let id = parseInt(req.params.id);
-  res.locals.recipe = recipeModel.getRecipe(id);
-  res.render('recipes/show');
+  models.recipe.findById(req.params.id).then(recipe => {
+    res.locals.recipe = recipe;
+    res.render('recipes/show');
+  });
 });
 
 // create
 recipes.post('/', (req, res) => {
-  let recipename = req.body.recipename;
-  let description = req.body.description;
-  recipeModel.createRecipe({recipename: recipename, description: description});
-  res.redirect('/recipes');
+  models.recipe.create({name: req.body.name,
+    description: req.body.description,
+    duration: req.body.duration,
+    difficulty: req.body.difficulty,
+    ingredients: req.body.ingredients,
+    origin: req.body.origin,
+    gluten_free: req.body.gluten_free,
+    student_id: req.body.student_id }).then(recipe => {
+    res.redirect('/recipes');
+  });
 });
 
 // edit
 recipes.get('/:id/edit', (req, res) => {
-  let id = parseInt(req.params.id);
-  let recipe = recipeModel.getRecipe(id);
-  res.locals.recipe = recipe;
-  res.render('recipes/edit');
+  models.recipe.findById(req.params.id).then(recipe => {
+    res.locals.recipe = recipe;
+    res.render('recipes/edit');
+  });
 });
 
 // update
 recipes.put('/:id', (req, res) => {
-  let id = parseInt(req.params.id);
-  let recipename = req.body.recipename;
-  let description = req.body.description;
-  recipeModel.updateRecipe(id, recipename, description);
-  res.redirect('/recipes');
+  models.recipe.update({name: req.body.name,
+    description: req.body.description,
+    duration: req.body.duration,
+    difficulty: req.body.difficulty,
+    ingredients: req.body.ingredients,
+    origin: req.body.origin,
+    gluten_free: req.body.gluten_free }).then(recipe => {
+    res.redirect('/recipes');
+  });
 });
 
 // destroy
 recipes.delete('/:id', (req, res) => {
-  let id = parseInt(req.params.id);
-  recipeModel.deleteRecipe(id);
-  res.redirect('/recipes');
+  models.recipe.findById(req.params.id).then(recipe => {
+    recipe.destroy().then(() => {
+      res.redirect('/recipes');
+    });
+  });
 });
 
 module.exports = recipes;
